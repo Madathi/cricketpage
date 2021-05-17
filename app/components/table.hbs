@@ -1,0 +1,51 @@
+  <div>
+    <center><h1>SCORE BOARD</h1></center>
+    <h4>RUNS:{{this.run}}/{{this.out}}</h4>
+    <h4>4's Count:{{this.fourcount}}</h4>
+    <h4>6's Count:{{this.sixcount}}</h4> 
+    <table>
+       <thead>
+        <tr>
+            <th><b>PLAYERS NAME</b></th>
+            <th><b>SCORE</b></th>
+            <th><b>OVERS</b></th>
+        </tr>
+       </thead> 
+       <tbody>
+        <tr>
+        <td>Player 1</td>
+        <td><input type="text"  value = {{score}}  onblur={{action "add" value = "target.value"}}/> </td>
+        <td rowspan="6">1</td>
+    </tr>
+     <tr>
+        <td>Player 1</td>
+        <td><input type="text"  value = {{score}}  onblur={{action "add" value = "target.value"}}/></td>
+    
+    </tr>
+     <tr>
+        <td>Player 1</td>
+        <td><input type="text"  value = {{score}}  onblur={{action "add" value = "target.value"}}/> </td>
+    </tr>
+     <tr>
+        <td>Player 1</td>
+        <td><input type="text"  value = {{score}}  onblur={{action "add" value = "target.value"}}/></td>
+        
+    </tr>
+     <tr>
+        <td>Player 1</td>
+        <td><input type="text"  value = {{score}}  onblur={{action "add" value = "target.value"}}/> </td>
+        
+        
+    </tr>
+     <tr>
+        <td>Player 1</td>
+        <td><input type="text"  value = {{score}}  onblur={{action "add" value = "target.value"}}/> </td>
+    </tr>
+       </tbody>
+       <tfoot>
+           <tr><td colspan="6"><input type="submit" value="ADD NEW ROWS" id="newrows"/></td></tr>
+       </tfoot> 
+    </table>   
+</div>
+    
+{{yield}}
