@@ -1,51 +1,67 @@
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+   var o=1,over=1,i,run=0,runid=101;
+   function myFunction()
+   {
+         var s=document.getElementById("score").value;
+         document.getElementById(o).innerHTML=s;
+         run=parseInt(run)+parseInt(s);
+         document.getElementById(runid).innerHTML=run;
+         if(o%6==0)
+         {
+            runid=runid+1;
+            i=o+1;
+            over++;
+            markup = '<tr><th>PLAYER '+over+'</th>'+
+                     '<td><p id="'+(i++)+'"></p></td>'+
+                     '<td><p id="'+(i++)+'"></p></td>'+
+                     '<td><p id="'+(i++)+'"></p></td>'+
+                     '<td><p id="'+(i++)+'"></p></td>'+
+                     '<td><p id="'+(i++)+'"></p></td>'+
+                     '<td><p id="'+(i++)+'"></p></td>'+
+                     '<td>'+over+'</td>'+
+                     '<td><p id="'+runid+'"></p></td></tr>';
+                tableBody = $("table tbody");
+                tableBody.append(markup);
+         }
+         o=o+1;
+         
+   }   
+</script>
+</head>
+<body>
   <div>
-    <center><h1>SCORE BOARD</h1></center>
+    <center><h1 style="color:white;background-color: black">SCORE BOARD</h1></center>
+    <div >
     <h4>RUNS:{{this.run}}/{{this.out}}</h4>
     <h4>4's Count:{{this.fourcount}}</h4>
     <h4>6's Count:{{this.sixcount}}</h4> 
-    <table>
-       <thead>
-        <tr>
-            <th><b>PLAYERS NAME</b></th>
-            <th><b>SCORE</b></th>
-            <th><b>OVERS</b></th>
-        </tr>
-       </thead> 
-       <tbody>
-        <tr>
-        <td>Player 1</td>
-        <td><input type="text"  value = {{score}}  onblur={{action "add" value = "target.value"}}/> </td>
-        <td rowspan="6">1</td>
+    </div>
+    <input type="text" class="form-control" style="margin:10px;width:95%" placeholder="ENTER SCORE" value = {{score}} id="score"  onblur={{action "add" value = "target.value"}} onfocusout="myFunction()"/>
+   <table class="table" style="margin-top:60px;width:75%;margin-left:150px">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">PLAYER'S NAME</th>
+      <th scope="col" colspan="6">SCORES</th>
+      <th scope="col">OVERS</th>
+      <th scope="col">RUNS</th>
     </tr>
-     <tr>
-        <td>Player 1</td>
-        <td><input type="text"  value = {{score}}  onblur={{action "add" value = "target.value"}}/></td>
-    
+  </thead> 
+  <tbody>
+    <tr>
+      <th scope="row">PLAYER 1</th>
+      <td><p id="1"></p></td>
+      <td><p id="2"></p></td>
+      <td><p id="3"></p></td>
+      <td><p id="4"></p></td>
+      <td><p id="5"></p></td>
+      <td><p id="6"></p></td>
+      <td>1</td>
+      <td><p id="101"></p></td>
     </tr>
-     <tr>
-        <td>Player 1</td>
-        <td><input type="text"  value = {{score}}  onblur={{action "add" value = "target.value"}}/> </td>
-    </tr>
-     <tr>
-        <td>Player 1</td>
-        <td><input type="text"  value = {{score}}  onblur={{action "add" value = "target.value"}}/></td>
-        
-    </tr>
-     <tr>
-        <td>Player 1</td>
-        <td><input type="text"  value = {{score}}  onblur={{action "add" value = "target.value"}}/> </td>
-        
-        
-    </tr>
-     <tr>
-        <td>Player 1</td>
-        <td><input type="text"  value = {{score}}  onblur={{action "add" value = "target.value"}}/> </td>
-    </tr>
-       </tbody>
-       <tfoot>
-           <tr><td colspan="6"><input type="submit" value="ADD NEW ROWS" id="newrows"/></td></tr>
-       </tfoot> 
-    </table>   
+  </tbody>
+</table>
 </div>
-    
-{{yield}}
+</body>
+      

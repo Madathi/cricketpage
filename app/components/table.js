@@ -8,8 +8,10 @@ export default class TableComponent extends Component {
     @tracked fourcount=0;
     @tracked sixcount=0;
     @tracked player="";
+    @tracked count=0;
     @action
           add(val){
+            this.count+=1;
             if(val=="4")
             {
               alert("HURRAY IT'S A FOUR!!");
@@ -26,9 +28,11 @@ export default class TableComponent extends Component {
                   alert("HURRAY IT'S A SIX!!");
                   this.sixcount+=1;
             }
-              this.run=parseInt(this.run)+parseInt(val);   
-               
-          }
-    
+            this.run=parseInt(this.run)+parseInt(val); 
+            if((this.count>=20 && this.run<=154 ) || (this.count<=20 && this.run>=154))
+            {
+                      alert("GAME OVER, CSK WON THE GAME");
+            }
+          }       
 
 }
