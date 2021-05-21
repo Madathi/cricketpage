@@ -6,6 +6,8 @@
    {
          var s=document.getElementById("score").value;
          document.getElementById(o).innerHTML=s;
+         if(s=='out')
+            s=0;
          run=parseInt(run)+parseInt(s);
          document.getElementById(runid).innerHTML=run;
          if(o%6==0)
