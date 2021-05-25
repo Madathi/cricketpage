@@ -1,7 +1,7 @@
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
-  var overid=1,over=1,i,run=0,runid=101,play=201,index=0;
+  var overid=1,over=1,i,run=0,play=1,index=0;
   var players=['MS DHONI', 'Suresh Raina', 'Ravi Jadeja','Dwayne Bravo',' Sam Curran','Mitchell Santner','Shardul Thakur','Deepak Chahar','Lungi Ngidi','Imran Tahir','Ruturaj Gaikwad'];
    function myFunction()
    {
@@ -16,10 +16,9 @@
             index++;
           }
          run=parseInt(run)+parseInt(s);
-         document.getElementById("run"+runid).innerHTML=run;
+         document.getElementById("run"+over).innerHTML=run;
          if(overid%6==0)
          {
-            runid=runid+1;
             i=overid+1;
             play+=1;
             over++;
@@ -31,7 +30,7 @@
                      '<td><p id="over'+(i++)+'"></p></td>'+
                      '<td><p id="over'+(i++)+'"></p></td>'+
                      '<td>'+over+'</td>'+
-                     '<td><p id="run'+runid+'"></p></td></tr>';
+                     '<td><p id="run'+over+'"></p></td></tr>';
                 tableBody = $("table tbody");
                 tableBody.append(markup);
          }
@@ -60,7 +59,7 @@
   </thead> 
   <tbody>
     <tr>
-      <th scope="row"><p id="player201"></p></th>
+      <th scope="row"><p id="player1"></p></th>
       <td><p id="over1"></p></td>
       <td><p id="over2"></p></td>
       <td><p id="over3"></p></td>
@@ -68,7 +67,7 @@
       <td><p id="over5"></p></td>
       <td><p id="over6"></p></td>
       <td>1</td>
-      <td><p id="run101"></p></td>
+      <td><p id="run1"></p></td>
     </tr>
   </tbody>
 </table>
