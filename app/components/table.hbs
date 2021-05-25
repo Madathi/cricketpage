@@ -1,21 +1,29 @@
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
-   var o=1,over=1,i,run=0,runid=101;
+  var overid=1,over=1,i,run=0,runid=101,play=201,index=0;
+  var players=['MS DHONI', 'Suresh Raina', 'Ravi Jadeja','Dwayne Bravo',' Sam Curran','Mitchell Santner','Shardul Thakur','Deepak Chahar','Lungi Ngidi','Imran Tahir','Ruturaj Gaikwad'];
    function myFunction()
    {
          var s=document.getElementById("score").value;
-         document.getElementById(o).innerHTML=s;
-         if(s=='out')
+         document.getElementById(overid).innerHTML=s;
+         document.getElementById(play).style.color = "black";
+         document.getElementById(play).innerHTML=players[index];
+          if(s=='out')
+          {
             s=0;
+            document.getElementById(play).style.color = "red";
+            index++;
+          }
          run=parseInt(run)+parseInt(s);
          document.getElementById(runid).innerHTML=run;
-         if(o%6==0)
+         if(overid%6==0)
          {
             runid=runid+1;
-            i=o+1;
+            i=overid+1;
+            play+=1;
             over++;
-            markup = '<tr><th>PLAYER '+over+'</th>'+
+            markup = '<tr><th><p id="'+play+'"></p></th>'+
                      '<td><p id="'+(i++)+'"></p></td>'+
                      '<td><p id="'+(i++)+'"></p></td>'+
                      '<td><p id="'+(i++)+'"></p></td>'+
@@ -27,9 +35,9 @@
                 tableBody = $("table tbody");
                 tableBody.append(markup);
          }
-         o=o+1;
+         overid=overid+1;
          
-   }   
+   }
 </script>
 </head>
 <body>
@@ -52,7 +60,7 @@
   </thead> 
   <tbody>
     <tr>
-      <th scope="row">PLAYER 1</th>
+      <th scope="row"><p id="201"></p></th>
       <td><p id="1"></p></td>
       <td><p id="2"></p></td>
       <td><p id="3"></p></td>
@@ -65,5 +73,6 @@
   </tbody>
 </table>
 </div>
+<footer class="footer"><marquee direction="right">CSK Needs {{this.runs}} runs in {{this.totalballs}} balls to win.</marquee></footer>
 </body>
       
