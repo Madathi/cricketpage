@@ -6,32 +6,32 @@
    function myFunction()
    {
          var s=document.getElementById("score").value;
-         document.getElementById(overid).innerHTML=s;
-         document.getElementById(play).style.color = "black";
-         document.getElementById(play).innerHTML=players[index];
+         document.getElementById("over"+overid).innerHTML=s;
+         document.getElementById("player"+play).style.color = "black";
+         document.getElementById("player"+play).innerHTML=players[index];
           if(s=='out')
           {
             s=0;
-            document.getElementById(play).style.color = "red";
+            document.getElementById("player"+play).style.color = "red";
             index++;
           }
          run=parseInt(run)+parseInt(s);
-         document.getElementById(runid).innerHTML=run;
+         document.getElementById("run"+runid).innerHTML=run;
          if(overid%6==0)
          {
             runid=runid+1;
             i=overid+1;
             play+=1;
             over++;
-            markup = '<tr><th><p id="'+play+'"></p></th>'+
-                     '<td><p id="'+(i++)+'"></p></td>'+
-                     '<td><p id="'+(i++)+'"></p></td>'+
-                     '<td><p id="'+(i++)+'"></p></td>'+
-                     '<td><p id="'+(i++)+'"></p></td>'+
-                     '<td><p id="'+(i++)+'"></p></td>'+
-                     '<td><p id="'+(i++)+'"></p></td>'+
+            markup = '<tr><th><p id="player'+play+'"></p></th>'+
+                     '<td><p id="over'+(i++)+'"></p></td>'+
+                     '<td><p id="over'+(i++)+'"></p></td>'+
+                     '<td><p id="over'+(i++)+'"></p></td>'+
+                     '<td><p id="over'+(i++)+'"></p></td>'+
+                     '<td><p id="over'+(i++)+'"></p></td>'+
+                     '<td><p id="over'+(i++)+'"></p></td>'+
                      '<td>'+over+'</td>'+
-                     '<td><p id="'+runid+'"></p></td></tr>';
+                     '<td><p id="run'+runid+'"></p></td></tr>';
                 tableBody = $("table tbody");
                 tableBody.append(markup);
          }
@@ -60,15 +60,15 @@
   </thead> 
   <tbody>
     <tr>
-      <th scope="row"><p id="201"></p></th>
-      <td><p id="1"></p></td>
-      <td><p id="2"></p></td>
-      <td><p id="3"></p></td>
-      <td><p id="4"></p></td>
-      <td><p id="5"></p></td>
-      <td><p id="6"></p></td>
+      <th scope="row"><p id="player201"></p></th>
+      <td><p id="over1"></p></td>
+      <td><p id="over2"></p></td>
+      <td><p id="over3"></p></td>
+      <td><p id="over4"></p></td>
+      <td><p id="over5"></p></td>
+      <td><p id="over6"></p></td>
       <td>1</td>
-      <td><p id="101"></p></td>
+      <td><p id="run101"></p></td>
     </tr>
   </tbody>
 </table>
