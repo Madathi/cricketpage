@@ -1,29 +1,28 @@
-<head>
+  <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
-  var overid=1,over=1,i,run=0,play=1,index=0;
-  var players=['MS DHONI', 'Suresh Raina', 'Ravi Jadeja','Dwayne Bravo',' Sam Curran','Mitchell Santner','Shardul Thakur','Deepak Chahar','Lungi Ngidi','Imran Tahir','Ruturaj Gaikwad'];
+  var overid=1,over=1,i,run=0,play=1,index=0,playrun=0,out=1;
    function myFunction()
    {
          var s=document.getElementById("score").value;
          document.getElementById("over"+overid).innerHTML=s;
-         document.getElementById("player"+play).style.color = "black";
-         document.getElementById("player"+play).innerHTML=players[index];
           if(s=='out')
           {
             s=0;
-            document.getElementById("player"+play).style.color = "red";
-            index++;
+            document.getElementById("out"+out).innerHTML="out";
+            document.getElementById("out"+out).style.color="red";
+            playrun=0;
+            play++;
           }
          run=parseInt(run)+parseInt(s);
          document.getElementById("run"+over).innerHTML=run;
+         playrun=parseInt(playrun)+parseInt(s);
+         document.getElementById("player"+play).innerHTML=playrun;
          if(overid%6==0)
          {
             i=overid+1;
-            play+=1;
             over++;
-            markup = '<tr><th><p id="player'+play+'"></p></th>'+
-                     '<td><p id="over'+(i++)+'"></p></td>'+
+            markup = '<tr><td><p id="over'+(i++)+'"></p></td>'+
                      '<td><p id="over'+(i++)+'"></p></td>'+
                      '<td><p id="over'+(i++)+'"></p></td>'+
                      '<td><p id="over'+(i++)+'"></p></td>'+
@@ -31,7 +30,7 @@
                      '<td><p id="over'+(i++)+'"></p></td>'+
                      '<td>'+over+'</td>'+
                      '<td><p id="run'+over+'"></p></td></tr>';
-                tableBody = $("table tbody");
+                tableBody = $("div table tbody");
                 tableBody.append(markup);
          }
          overid=overid+1;
@@ -40,18 +39,17 @@
 </script>
 </head>
 <body>
-  <div>
     <center><h1 style="color:white;background-color: black">SCORE BOARD</h1></center>
     <div >
     <h4>RUNS:{{this.run}}/{{this.out}}</h4>
     <h4>4's Count:{{this.fourcount}}</h4>
     <h4>6's Count:{{this.sixcount}}</h4> 
     </div>
-    <input type="text" class="form-control" style="margin:10px;width:95%" placeholder="ENTER SCORE" value = {{score}} id="score"  onblur={{action "add" value = "target.value"}} onfocusout="myFunction()"/>
-   <table class="table" style="margin-top:60px;width:75%;margin-left:150px">
+<input type="text" class="form-control" style="margin:10px;width:95%" placeholder="ENTER SCORE" value = {{score}} id="score"  onblur={{action "add" value = "target.value"}} onfocusout="myFunction()"/>
+  <div style="float: left;width:50%">
+    <table class="table" style="margin-left:50px;margin-top:50px">
   <thead class="thead-dark">
     <tr>
-      <th scope="col">PLAYER'S NAME</th>
       <th scope="col" colspan="6">SCORES</th>
       <th scope="col">OVERS</th>
       <th scope="col">RUNS</th>
@@ -59,7 +57,6 @@
   </thead> 
   <tbody>
     <tr>
-      <th scope="row"><p id="player1"></p></th>
       <td><p id="over1"></p></td>
       <td><p id="over2"></p></td>
       <td><p id="over3"></p></td>
@@ -72,6 +69,28 @@
   </tbody>
 </table>
 </div>
+<div2 style="float:right;">
+<table class="table" style="margin-right:200px;height:30%;margin-top:50px">
+   <thead class="thead-dark">
+  <th scope="col">PLAYER'S NAME</th>
+  <th scope="col">RUNS</th>
+  <th scope="col">OUT</th>
+  </thead>
+  <tbody>
+    <tr><td>MS DHONI</td><td><p id="player1"></p></td><td ><p id="out1"></p></td></tr>
+    <tr><td>Suresh Raina</td><td><p id="player2"></p></td><td ><p id="out2"></p></td></tr>
+    <tr><td>Ravi Jadeja</td><td><p id="player3"></p></td><td ><p id="out3"></p></td></tr>
+    <tr><td>Dwayne Bravo</td><td><p id="player4"></p></td><td ><p id="out4"></p></td></tr>
+    <tr><td>Sam Curran</td><td><p id="player5"></p></td><td ><p id="out5"></p></td></tr>
+    <tr><td>Mitchell Santner</td><td><p id="player6"></p></td><td ><p id="out6"></p></td></tr>
+    <tr><td>Shardul Thakur</td><td><p id="player7"></p></td><td ><p id="out7"></p></td></tr>
+    <tr><td>Deepak Chahar</td><td><p id="player8"></p></td><td ><p id="out8"></p></td></tr>
+    <tr><td>Lungi Ngidi</td><td><p id="player9"></p></td><td ><p id="out9"></p></td></tr>
+    <tr><td>Imran Tahir</td><td><p id="player10"></p></td><td ><p id="out10"></p></td></tr>
+    <tr><td>Ruturaj Gaikwad</td><td><p id="player11"></p></td><td ><p id="out11"></p></td></tr>
+  </tbody>
+</table>
+</div2>
 <footer class="footer"><marquee direction="right">CSK Needs {{this.runs}} runs in {{this.totalballs}} balls to win.</marquee></footer>
 </body>
       

@@ -60,9 +60,5 @@ export default class TableComponent extends Component {
           get runs()
           {
             return (this.cricketscore.totalrun())-this.run;
-          } 
-  
-
-          
-
+          }
 }
