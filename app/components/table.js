@@ -9,15 +9,14 @@ export default class TableComponent extends Component {
     @tracked out=0;
     @tracked fourcount=0;
     @tracked sixcount=0;
-    @tracked count=0;
     @tracked playersrun=0;
-    @tracked max=0;
+    @tracked maxrun=0;
     @tracked playerindex=0;
     @tracked manofthematch=0;
     @tracked totalballs=120;
-    players=['MS DHONI', 'Suresh Raina', 'Ravi Jadeja','Dwayne Bravo',' Sam Curran','Mitchell Santner','Shardul Thakur','Deepak Chahar','Lungi Ngidi','Imran Tahir','Ruturaj Gaikwad'];
     @action
           add(val){
+            document.getElementById("over"+overid).innerHTML=val;
             this.overscount+=1;
             if(val=="4")
             {
@@ -27,15 +26,26 @@ export default class TableComponent extends Component {
             else if(val=="out")
             {
               alert("OUT");
-              if(this.max<this.playersrun)
+            document.getElementById("out"+outid).innerHTML="out";
+            document.getElementById("out"+outid).style.color="red";
+            outid++;
+            playerid++;
+              if(this.maxrun<this.playersrun)
               {
-                   this.max=this.playersrun;
-                   this.playersrun=0; 
+                   this.maxrun=this.playersrun;
+                   this.playersrun=0;
                    this.manofthematch=this.playerindex;
               }
+              alert(players[this.manofthematch]);
               this.playerindex++;
               this.out+=1;
               val=0;
+              if(this.out==11)
+            {
+              alert("GAME OVER,CSK LOST THE GAME");
+              alert("Man of the match goes to "+players[this.manofthematch]);
+              return;
+            }
             }
             else if(val=="6")
             {
@@ -44,17 +54,32 @@ export default class TableComponent extends Component {
             }
             this.run=parseInt(this.run)+parseInt(val); 
             this.playersrun=parseInt(this.playersrun)+parseInt(val);
-            this.totalballs--;
-            if((this.overscount>=20 && this.run<=154 ) || (this.overscount<=20 && this.run>=154))
+            document.getElementById("run"+over).innerHTML=this.run;
+            document.getElementById("player"+playerid).innerHTML=this.playersrun;
+            if(this.run>=154 || this.overscount==20)
             {
-                      alert("GAME OVER, CSK WON THE GAME");
-                      alert("Man of the match goes to "+players[this.manofthematch]);
-            }
-            if(this.out==11)
-            {
-              alert("GAME OVER,CSK LOST THE GAME");
+              alert("GAME OVER,CSK WON THE GAME");
               alert("Man of the match goes to "+players[this.manofthematch]);
             }
+           if(overid%6==0)
+         {
+            i=overid+1;
+            over++;
+            markup = '<tr><td><p id="over'+(i++)+'"></p></td>'+
+                     '<td><p id="over'+(i++)+'"></p></td>'+
+                     '<td><p id="over'+(i++)+'"></p></td>'+
+                     '<td><p id="over'+(i++)+'"></p></td>'+
+                     '<td><p id="over'+(i++)+'"></p></td>'+
+                     '<td><p id="over'+(i++)+'"></p></td>'+
+                     '<td>'+over+'</td>'+
+                     '<td><p id="run'+over+'"></p></td></tr>';
+                tableBody = $("div table tbody");
+                tableBody.append(markup);
+         }  
+            overid=overid+1;
+            this.totalballs--;
+            
+            
           }   
           @service('cricket') cricketscore;
           get runs()

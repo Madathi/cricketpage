@@ -1,56 +1,18 @@
   <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
-  var overid=1,over=1,i,run=0,play=1,index=0,playrun=0,out=1;
-   function myFunction()
-   {
-         var s=document.getElementById("score").value;
-         document.getElementById("over"+overid).innerHTML=s;
-          if(s=='out')
-          {
-            s=0;
-            document.getElementById("out"+out).innerHTML="out";
-            document.getElementById("out"+out).style.color="red";
-            playrun=0;
-            play++;
-          }
-         run=parseInt(run)+parseInt(s);
-         document.getElementById("run"+over).innerHTML=run;
-         playrun=parseInt(playrun)+parseInt(s);
-         document.getElementById("player"+play).innerHTML=playrun;
-         if(overid%6==0)
-         {
-            i=overid+1;
-            over++;
-            markup = '<tr><td><p id="over'+(i++)+'"></p></td>'+
-                     '<td><p id="over'+(i++)+'"></p></td>'+
-                     '<td><p id="over'+(i++)+'"></p></td>'+
-                     '<td><p id="over'+(i++)+'"></p></td>'+
-                     '<td><p id="over'+(i++)+'"></p></td>'+
-                     '<td><p id="over'+(i++)+'"></p></td>'+
-                     '<td>'+over+'</td>'+
-                     '<td><p id="run'+over+'"></p></td></tr>';
-                tableBody = $("div table tbody");
-                tableBody.append(markup);
-         }
-         overid=overid+1;
-         
-   }
-   function actionfunction()
-   {
-     alert("1");
-      {{action "add" value = "target.value"}}
-   }
+  var overid=1,over=1,i,playerid=1,outid=1,markup,tableBody;
+  var players=['MS DHONI', 'Suresh Raina', 'Ravi Jadeja','Dwayne Bravo',' Sam Curran','Mitchell Santner','Shardul Thakur','Deepak Chahar','Lungi Ngidi','Imran Tahir','Ruturaj Gaikwad'];
 </script>
 </head>
 <body>
     <center><h1 style="color:white;background-color: black">SCORE BOARD</h1></center>
-    <div >
+    <div>
     <h4>RUNS:{{this.run}}/{{this.out}}</h4>
     <h4>4's Count:{{this.fourcount}}</h4>
     <h4>6's Count:{{this.sixcount}}</h4> 
     </div>
-<input type="text" class="form-control" style="margin:10px;width:95%" placeholder="ENTER SCORE" value = {{score}} id="score"  onblur="actionfunction()" onfocusout="myFunction()"/>
+<input type="text" class="form-control" style="margin:10px;width:95%" placeholder="ENTER SCORE" value = {{score}} id="score"  onblur={{action "add" value = "target.value"}} />
   <div style="float: left;width:50%">
     <h6><center>SCORE TABLE</center></h6>
     <table class="table" style="margin-left:50px;margin-top:50px">
