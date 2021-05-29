@@ -36,6 +36,11 @@
          overid=overid+1;
          
    }
+   function actionfunction()
+   {
+     alert("1");
+      {{action "add" value = "target.value"}}
+   }
 </script>
 </head>
 <body>
@@ -45,7 +50,7 @@
     <h4>4's Count:{{this.fourcount}}</h4>
     <h4>6's Count:{{this.sixcount}}</h4> 
     </div>
-<input type="text" class="form-control" style="margin:10px;width:95%" placeholder="ENTER SCORE" value = {{score}} id="score"  onblur={{action "add" value = "target.value"}} onfocusout="myFunction()"/>
+<input type="text" class="form-control" style="margin:10px;width:95%" placeholder="ENTER SCORE" value = {{score}} id="score"  onblur="actionfunction()" onfocusout="myFunction()"/>
   <div style="float: left;width:50%">
     <h6><center>SCORE TABLE</center></h6>
     <table class="table" style="margin-left:50px;margin-top:50px">
