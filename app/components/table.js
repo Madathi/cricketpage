@@ -17,7 +17,6 @@ export default class TableComponent extends Component {
     @action
           add(val){
             document.getElementById("over"+overid).innerHTML=val;
-            this.overscount+=1;
             if(val=="4")
             {
               alert("HURRAY IT'S A FOUR!!");
@@ -56,7 +55,8 @@ export default class TableComponent extends Component {
             this.playersrun=parseInt(this.playersrun)+parseInt(val);
             document.getElementById("run"+over).innerHTML=this.run;
             document.getElementById("player"+playerid).innerHTML=this.playersrun;
-            if(this.run>=154 || this.overscount==20)
+            this.totalballs--;
+            if(this.run>=154 || this.totalballs==0)
             {
               alert("GAME OVER,CSK WON THE GAME");
               alert("Man of the match goes to "+players[this.manofthematch]);
@@ -77,9 +77,7 @@ export default class TableComponent extends Component {
                 tableBody.append(markup);
          }  
             overid=overid+1;
-            this.totalballs--;
-            
-            
+
           }   
           @service('cricket') cricketscore;
           get runs()
