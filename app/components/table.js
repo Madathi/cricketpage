@@ -16,7 +16,7 @@ export default class TableComponent extends Component {
     @tracked totalballs=120;
     @action
           add(val){
-            document.getElementById("over"+overid).innerHTML=val;
+            document.getElementById("ball"+overid).innerHTML=val;
             if(val=="4")
             {
               alert("HURRAY IT'S A FOUR!!");
@@ -35,7 +35,6 @@ export default class TableComponent extends Component {
                    this.playersrun=0;
                    this.manofthematch=this.playerindex;
               }
-              alert(players[this.manofthematch]);
               this.playerindex++;
               this.out+=1;
               val=0;
@@ -43,7 +42,7 @@ export default class TableComponent extends Component {
             {
               alert("GAME OVER,CSK LOST THE GAME");
               alert("Man of the match goes to "+players[this.manofthematch]);
-              return;
+              window.location.href="failure";
             }
             }
             else if(val=="6")
@@ -56,21 +55,28 @@ export default class TableComponent extends Component {
             document.getElementById("run"+over).innerHTML=this.run;
             document.getElementById("player"+playerid).innerHTML=this.playersrun;
             this.totalballs--;
-            if(this.run>=154 || this.totalballs==0)
+            if(this.run<154 && this.totalballs==0)
+            {
+              alert("GAME OVER,CSK LOST THE GAME");
+              alert("Man of the match goes to "+players[this.manofthematch]);
+              window.location.href="failure";
+            }
+            if(this.run>=154)
             {
               alert("GAME OVER,CSK WON THE GAME");
               alert("Man of the match goes to "+players[this.manofthematch]);
+              window.location.href="success";
             }
            if(overid%6==0)
          {
             i=overid+1;
             over++;
-            markup = '<tr><td><p id="over'+(i++)+'"></p></td>'+
-                     '<td><p id="over'+(i++)+'"></p></td>'+
-                     '<td><p id="over'+(i++)+'"></p></td>'+
-                     '<td><p id="over'+(i++)+'"></p></td>'+
-                     '<td><p id="over'+(i++)+'"></p></td>'+
-                     '<td><p id="over'+(i++)+'"></p></td>'+
+            markup = '<tr><td><p id="ball'+(i++)+'"></p></td>'+
+                     '<td><p id="ball'+(i++)+'"></p></td>'+
+                     '<td><p id="ball'+(i++)+'"></p></td>'+
+                     '<td><p id="ball'+(i++)+'"></p></td>'+
+                     '<td><p id="ball'+(i++)+'"></p></td>'+
+                     '<td><p id="ball'+(i++)+'"></p></td>'+
                      '<td>'+over+'</td>'+
                      '<td><p id="run'+over+'"></p></td></tr>';
                 tableBody = $("div table tbody");
