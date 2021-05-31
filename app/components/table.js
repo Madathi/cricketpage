@@ -2,8 +2,6 @@ import Component from '@glimmer/component';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 import { inject as service } from '@ember/service';
-  
-
 export default class TableComponent extends Component {
     @tracked run=0;
     @tracked out=0;
