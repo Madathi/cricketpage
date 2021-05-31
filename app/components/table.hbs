@@ -11,7 +11,7 @@
     <h4>RUNS:{{this.run}}/{{this.out}}</h4>
     <h4>4's Count:{{this.fourcount}}</h4>
     <h4>6's Count:{{this.sixcount}}</h4> 
-   <select name="player" id="player" onchange={{action "getscore"}} style="width:20%">
+   <select name="player" id="player" onchange={{action "getscore"}} style="width:20%;float:right;margin-right:70px;">
     <option value="" disabled selected hidden>CHOOSE THE STRIKER</option>   
     <option value="MS DHONI">MS DHONI</option>
     <option value="Suresh Raina">Suresh Raina</option>
@@ -36,7 +36,7 @@
     </div>
  
   <div style="float: left;width:50%">
-    <h6><center>SCORE TABLE</center></h6>
+    <h6 style="margin-top: 50px" ><center>SCORE TABLE</center></h6>
     <table class="table" style="margin-left:50px;margin-top:50px">
   <thead class="thead-dark">
     <tr>
@@ -60,7 +60,7 @@
 </table>
 </div>
 <div2 style="float:right;">
-  <h6><center>PLAYER'S TABLE</center></h6>
+  <h6 style="margin-top: 50px;"><center>PLAYER'S TABLE</center></h6>
 <table class="table" style="margin-right:200px;height:30%;margin-top:50px">
    <thead class="thead-dark">
   <th scope="col">PLAYER'S NAME</th>
