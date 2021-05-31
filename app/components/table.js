@@ -9,33 +9,42 @@ export default class TableComponent extends Component {
     @tracked sixcount=0;
     @tracked playersrun=0;
     @tracked maxrun=0;
-    @tracked playerindex=0;
+    @tracked playerindex;
     @tracked manofthematch=0;
     @tracked totalballs=120;
     @action
-          add(val){
-            document.getElementById("ball"+overid).innerHTML=val;
-            if(val=="4")
+          getscore()
+          {
+             document.getElementById("score").removeAttribute("disabled");
+             document.getElementById("player").setAttribute("disabled","disabled");
+
+          }
+    @action
+          add(){ 
+            playerid=document.getElementById("player").selectedIndex;
+            document.getElementById("player").options[playerid].disabled = true;
+            var score=document.getElementById("score").value;
+            document.getElementById("ball"+overid).innerHTML=score;
+            this.playerindex=playerid;
+            if(score=="4")
             {
               alert("HURRAY IT'S A FOUR!!");
               this.fourcount+=1;
             }
-            else if(val=="out")
+            else if(score=="out")
             {
-              alert("OUT");
-            document.getElementById("out"+outid).innerHTML="out";
-            document.getElementById("out"+outid).style.color="red";
-            outid++;
-            playerid++;
-              if(this.maxrun<this.playersrun)
+              alert("OUT!! NEXT BATSMAN COMES IN");
+            document.getElementById("score").setAttribute("disabled","disabled");
+             document.getElementById("player").removeAttribute("disabled");
+            document.getElementById("out"+playerid).innerHTML="out";
+            document.getElementById("out"+playerid).style.color="red";
+              if(this.maxrun<playersrun)
               {
-                   this.maxrun=this.playersrun;
-                   this.playersrun=0;
+                   this.maxrun=playersrun;
                    this.manofthematch=this.playerindex;
               }
-              this.playerindex++;
               this.out+=1;
-              val=0;
+              score=0;
               if(this.out==11)
             {
               alert("GAME OVER,CSK LOST THE GAME");
@@ -43,15 +52,20 @@ export default class TableComponent extends Component {
               window.location.href="failure";
             }
             }
-            else if(val=="6")
+            else if(score=="6")
             {
                   alert("HURRAY IT'S A SIX!!");
                   this.sixcount+=1;
             }
-            this.run=parseInt(this.run)+parseInt(val); 
-            this.playersrun=parseInt(this.playersrun)+parseInt(val);
+            this.run=parseInt(this.run)+parseInt(score); 
+            playersrun=parseInt(playersrun)+parseInt(score);
             document.getElementById("run"+over).innerHTML=this.run;
-            document.getElementById("player"+playerid).innerHTML=this.playersrun;
+            document.getElementById("player"+playerid).innerHTML=playersrun;
+            overid=overid+1;
+            if(score=='0')
+            {
+              playersrun=0;
+            }
             this.totalballs--;
             if(this.run<154 && this.totalballs==0)
             {
@@ -65,9 +79,9 @@ export default class TableComponent extends Component {
               alert("Man of the match goes to "+players[this.manofthematch]);
               window.location.href="success";
             }
-           if(overid%6==0)
+           if(overid%7==0)
          {
-            i=overid+1;
+            i=overid;
             over++;
             markup = '<tr><td><p id="ball'+(i++)+'"></p></td>'+
                      '<td><p id="ball'+(i++)+'"></p></td>'+
@@ -79,8 +93,7 @@ export default class TableComponent extends Component {
                      '<td><p id="run'+over+'"></p></td></tr>';
                 tableBody = $("div table tbody");
                 tableBody.append(markup);
-         }  
-            overid=overid+1;
+         } 
 
           }   
           @service('cricket') cricketscore;

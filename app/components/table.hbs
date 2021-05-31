@@ -1,7 +1,7 @@
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
-  var overid=1,over=1,i,playerid=1,outid=1,markup,tableBody;
+  var overid=1,over=1,i,playerid=1,markup,tableBody,playersrun=0;
   var players=['MS DHONI', 'Suresh Raina', 'Ravi Jadeja','Dwayne Bravo',' Sam Curran','Mitchell Santner','Shardul Thakur','Deepak Chahar','Lungi Ngidi','Imran Tahir','Ruturaj Gaikwad'];
 </script>
 </head>
@@ -11,8 +11,30 @@
     <h4>RUNS:{{this.run}}/{{this.out}}</h4>
     <h4>4's Count:{{this.fourcount}}</h4>
     <h4>6's Count:{{this.sixcount}}</h4> 
+   <select name="player" id="player" onchange={{action "getscore"}} style="width:20%">
+    <option value="" disabled selected hidden>CHOOSE THE STRIKER</option>   
+    <option value="MS DHONI">MS DHONI</option>
+    <option value="Suresh Raina">Suresh Raina</option>
+    <option value="Ravi Jadeja">Ravi Jadeja</option>
+    <option value="Dwayne Bravo">Dwayne Bravo</option>
+    <option value="Sam Curran">Sam Curran</option>
+    <option value="Mitchell Santner">Mitchell Santner</option>
+    <option value="Shardul Thakur">Shardul Thakur</option>
+    <option value="Lungi Ngidi">Lungi Ngidi</option>
+    <option value="Imran Tahir">Imran Tahir</option>
+    <option value="Ruturaj Gaikwad">Ruturaj Gaikwad</option>
+  </select>
+     <select name="score"  disabled id="score" onblur={{action "add"}}  style="width:20%">
+    <option value="" disabled selected hidden>CHOOSE SCORE</option>   
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="6">6</option>
+    <option value="out">out</option>
+  </select>
     </div>
-  <input type="text" class="form-control" style="margin:10px;width:95%" placeholder="ENTER SCORE" value = {{score}} id="score"  onblur={{action "add" value = "target.value"}} />
+ 
   <div style="float: left;width:50%">
     <h6><center>SCORE TABLE</center></h6>
     <table class="table" style="margin-left:50px;margin-top:50px">
