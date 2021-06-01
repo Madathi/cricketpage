@@ -12,6 +12,7 @@ export default class TableComponent extends Component {
     @tracked playerindex;
     @tracked manofthematch=0;
     @tracked totalballs=120;
+    @tracked comments="";
     @action
           getscore()
           {
@@ -34,6 +35,7 @@ export default class TableComponent extends Component {
             else if(score=="out")
             {
               alert("OUT!! NEXT BATSMAN COMES IN");
+              this.comments="";
             document.getElementById("score").setAttribute("disabled","disabled");
              document.getElementById("player").removeAttribute("disabled");
             document.getElementById("out"+playerid).innerHTML="out";
@@ -47,21 +49,21 @@ export default class TableComponent extends Component {
               score=0;
               if(this.out==11)
             {
-              alert("GAME OVER,CSK LOST THE GAME");
-              alert("Man of the match goes to "+players[this.manofthematch]);
-              window.location.href="failure";
+              document.getElementById("winstatus").style.display = "none";
+              this.comments="GAME OVER,CSK LOST THE GAME. Man of the match goes to "+players[this.manofthematch-1];
+              document.getElementById("player").setAttribute("disabled","disabled");
+              document.getElementById("score").setAttribute("disabled","disabled");
             }
             }
             else if(score=="6")
             {
-                  alert("HURRAY IT'S A SIX!!");
+                  alert("HURRAY IT'S A SIX");
                   this.sixcount+=1;
             }
             this.run=parseInt(this.run)+parseInt(score); 
             playersrun=parseInt(playersrun)+parseInt(score);
             document.getElementById("run"+over).innerHTML=this.run;
             document.getElementById("player"+playerid).innerHTML=playersrun;
-            overid=overid+1;
             if(score=='0')
             {
               playersrun=0;
@@ -69,19 +71,21 @@ export default class TableComponent extends Component {
             this.totalballs--;
             if(this.run<154 && this.totalballs==0)
             {
-              alert("GAME OVER,CSK LOST THE GAME");
-              alert("Man of the match goes to "+players[this.manofthematch]);
-              window.location.href="failure";
+              document.getElementById("winstatus").style.display = "none";
+              this.comments="GAME OVER,CSK LOST THE GAME .Man of the match goes to "+players[this.manofthematch-1];
+              document.getElementById("player").setAttribute("disabled","disabled");
+              document.getElementById("score").setAttribute("disabled","disabled");
             }
             if(this.run>=154)
             {
-              alert("GAME OVER,CSK WON THE GAME");
-              alert("Man of the match goes to "+players[this.manofthematch]);
-              window.location.href="success";
+              document.getElementById("winstatus").style.display = "none";
+              this.comments="GAME OVER,CSK WON THE GAME.Man of the match goes to "+players[this.manofthematch-1];
+              document.getElementById("player").setAttribute("disabled","disabled");
+              document.getElementById("score").setAttribute("disabled","disabled");
             }
-           if(overid%7==0)
+           if(overid%6==0)
          {
-            i=overid;
+            i=overid+1;
             over++;
             markup = '<tr><td><p id="ball'+(i++)+'"></p></td>'+
                      '<td><p id="ball'+(i++)+'"></p></td>'+
@@ -94,6 +98,7 @@ export default class TableComponent extends Component {
                 tableBody = $("div table tbody");
                 tableBody.append(markup);
          } 
+         overid=overid+1;
 
           }   
           @service('cricket') cricketscore;

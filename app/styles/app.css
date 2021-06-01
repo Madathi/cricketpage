@@ -39,6 +39,16 @@ body{
       color: white;
       text-align: center;
    }
+   h1{
+    color:white;
+    background-color: black;
+   }
+   #player
+   {
+    width:20%;
+    float:right;
+    margin-right:70px;
+   }
 
   
   

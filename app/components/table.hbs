@@ -6,25 +6,28 @@
 </script>
 </head>
 <body>
-    <center><h1 style="color:white;background-color: black">SCORE BOARD</h1></center>
+    <center><h1>SCORE BOARD</h1></center>
     <div>
     <h4>RUNS:{{this.run}}/{{this.out}}</h4>
     <h4>4's Count:{{this.fourcount}}</h4>
     <h4>6's Count:{{this.sixcount}}</h4> 
-   <select name="player" id="player" onchange={{action "getscore"}} style="width:20%;float:right;margin-right:70px;">
+  <center><h4 id="winstatus">CSK Needs {{this.runs}} runs in {{this.totalballs}} balls to win.</h4></center>
+  <h6 style="margin-left:1000px">CURRENT PLAYER:</h6>
+  <select name="player" id="player" class="form-select" onchange={{action "getscore"}}>
     <option value="" disabled selected hidden>CHOOSE THE STRIKER</option>   
     <option value="MS DHONI">MS DHONI</option>
     <option value="Suresh Raina">Suresh Raina</option>
     <option value="Ravi Jadeja">Ravi Jadeja</option>
     <option value="Dwayne Bravo">Dwayne Bravo</option>
     <option value="Sam Curran">Sam Curran</option>
-    <option value="Mitchell Santner">Mitchell Santner</option>
+    <option value="Mitchell Santner">Mitchell Santner</option>=
     <option value="Shardul Thakur">Shardul Thakur</option>
+    <option value="Deepak Chahar">Deepak Chahar</option>
     <option value="Lungi Ngidi">Lungi Ngidi</option>
     <option value="Imran Tahir">Imran Tahir</option>
     <option value="Ruturaj Gaikwad">Ruturaj Gaikwad</option>
   </select>
-     <select name="score"  disabled id="score" onblur={{action "add"}}  style="width:20%">
+     <select name="score" class="form-select" disabled id="score" onblur={{action "add"}}  style="width:20%">
     <option value="" disabled selected hidden>CHOOSE SCORE</option>   
     <option value="1">1</option>
     <option value="2">2</option>
@@ -37,7 +40,7 @@
  
   <div style="float: left;width:50%">
     <h6 style="margin-top: 50px" ><center>SCORE TABLE</center></h6>
-    <table class="table" style="margin-left:50px;margin-top:50px">
+    <table class="table" style="margin-left:50px;margin-top:50px;table-layout:fixed">
   <thead class="thead-dark">
     <tr>
       <th scope="col" colspan="6">SCORES</th>
@@ -59,29 +62,29 @@
   </tbody>
 </table>
 </div>
-<div2 style="float:right;">
+<div2 style="float:right;width:40%">
   <h6 style="margin-top: 50px;"><center>PLAYER'S TABLE</center></h6>
-<table class="table" style="margin-right:200px;height:30%;margin-top:50px">
+<table class="table" style="margin-right:200px;height:30%;margin-top:50px;table-layout:fixed">
    <thead class="thead-dark">
   <th scope="col">PLAYER'S NAME</th>
   <th scope="col">RUNS</th>
   <th scope="col">OUT</th>
   </thead>
   <tbody>
-    <tr><td>MS DHONI</td><td><p id="player1"></p></td><td ><p id="out1"></p></td></tr>
-    <tr><td>Suresh Raina</td><td><p id="player2"></p></td><td ><p id="out2"></p></td></tr>
-    <tr><td>Ravi Jadeja</td><td><p id="player3"></p></td><td ><p id="out3"></p></td></tr>
-    <tr><td>Dwayne Bravo</td><td><p id="player4"></p></td><td ><p id="out4"></p></td></tr>
-    <tr><td>Sam Curran</td><td><p id="player5"></p></td><td ><p id="out5"></p></td></tr>
-    <tr><td>Mitchell Santner</td><td><p id="player6"></p></td><td ><p id="out6"></p></td></tr>
-    <tr><td>Shardul Thakur</td><td><p id="player7"></p></td><td ><p id="out7"></p></td></tr>
-    <tr><td>Deepak Chahar</td><td><p id="player8"></p></td><td ><p id="out8"></p></td></tr>
-    <tr><td>Lungi Ngidi</td><td><p id="player9"></p></td><td ><p id="out9"></p></td></tr>
-    <tr><td>Imran Tahir</td><td><p id="player10"></p></td><td ><p id="out10"></p></td></tr>
-    <tr><td>Ruturaj Gaikwad</td><td><p id="player11"></p></td><td ><p id="out11"></p></td></tr>
+    <tr><td style="height:65px;">MS DHONI</td><td><p id="player1"></p></td><td ><p id="out1"></p></td></tr>
+    <tr><td style="height:65px;">Suresh Raina</td><td><p id="player2"></p></td><td ><p id="out2"></p></td></tr>
+    <tr><td style="height:65px;">Ravi Jadeja</td><td><p id="player3"></p></td><td ><p id="out3"></p></td></tr>
+    <tr><td style="height:65px;">Dwayne Bravo</td><td><p id="player4"></p></td><td ><p id="out4"></p></td></tr>
+    <tr><td style="height:65px;">Sam Curran</td><td><p id="player5"></p></td><td ><p id="out5"></p></td></tr>
+    <tr><td style="height:65px;">Mitchell Santner</td><td><p id="player6"></p></td><td ><p id="out6"></p></td></tr>
+    <tr><td style="height:65px;">Shardul Thakur</td><td><p id="player7"></p></td><td ><p id="out7"></p></td></tr>
+    <tr><td style="height:65px;">Deepak Chahar</td><td><p id="player8"></p></td><td ><p id="out8"></p></td></tr>
+    <tr><td style="height:65px;">Lungi Ngidi</td><td><p id="player9"></p></td><td ><p id="out9"></p></td></tr>
+    <tr><td style="height:65px;">Imran Tahir</td><td><p id="player10"></p></td><td ><p id="out10"></p></td></tr>
+    <tr><td style="height:65px;">Ruturaj Gaikwad</td><td><p id="player11"></p></td><td ><p id="out11"></p></td></tr>
   </tbody>
 </table>
 </div2>
-<footer class="footer"><marquee direction="right">CSK Needs {{this.runs}} runs in {{this.totalballs}} balls to win.</marquee></footer>
+<footer class="footer"><marquee direction="right">{{this.comments}}</marquee></footer>
 </body>
-      
+
