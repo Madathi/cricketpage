@@ -1,5 +1,4 @@
 body{
-    background-color:yellowgreen;
 }
 .box {
   background-color: lightgrey;
@@ -7,7 +6,7 @@ body{
   width: 450px;
   border: 5px solid black;
   padding: 20px;
-  margin-left: 400px;
+  margin-left: 550px;
   margin-top:100px;
 }
   .button {
@@ -15,7 +14,7 @@ body{
     color: white;
     padding: 15px 32px;
     margin-top:100px;
-    margin-left: 570px;
+    margin-left:700px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -26,13 +25,13 @@ body{
     cursor: pointer;
   }
   body{
-    background-color: white;
+    background-color:whitesmoke;
   }
 .footer {
       position: fixed;
       left: 0;
       bottom: 0;
-      width: 100%;
+      width: 150%;
       background-color:black;
       font-size: larger;
       font-weight: bold;
@@ -41,14 +40,91 @@ body{
    }
    h1{
     color:white;
-    background-color: black;
+    font-family: "Lucida Console", "Courier New", monospace;
+    background-color:#343A40;
+    font-weight: 400;
    }
-   #player
+   .player
    {
-    width:20%;
     float:right;
-    margin-right:70px;
+    margin-right:75px;
+    margin-top:1px;
+    text-align:center;
+    background-color:#343A40;
+    color:white;
+    width:200px;
+    height:150px
    }
+   div.rundetailsbox
+   {
+    width:200px;
+    margin-left:10px;
+    text-align:center;
+    background-color:#343A40;
+    color:white
+   }
+   #winstatus{
+     margin-left:100px;
+     margin-top:30px;
+     width:500px;
+    font-weight:500
+   }
+  .custom-select {
+  position: relative;
+  font-family: Arial;
+}
+
+.custom-select select {
+  display: none; 
+}
+
+.select-selected {
+  background-color: #343A40;
+}
+
+.select-selected:after {
+  position: absolute;
+  content: "";
+  top: 14px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #fff transparent transparent transparent;
+}
+
+
+.select-selected.select-arrow-active:after {
+  border-color: transparent transparent #fff transparent;
+  top: 7px;
+}
+
+
+.select-items div,.select-selected {
+  color: #ffffff;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+  cursor: pointer;
+  user-select: none;
+}
+
+
+.select-items {
+  position: absolute;
+  background-color:#343A40;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+}
+
+
+.select-hide {
+  display: none;
+}
+
+
 
   
   

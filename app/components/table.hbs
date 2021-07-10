@@ -1,33 +1,29 @@
+
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
-  var overid=1,over=1,i,playerid=1,markup,tableBody,playersrun=0;
-  var players=['MS DHONI', 'Suresh Raina', 'Ravi Jadeja','Dwayne Bravo',' Sam Curran','Mitchell Santner','Shardul Thakur','Deepak Chahar','Lungi Ngidi','Imran Tahir','Ruturaj Gaikwad'];
+  var overid=1,over=1,i,playerid=1,markup,tableBody,playersrun=0,ballno=0,currentplayer=0;
+  var players=['MS DHONI', 'Suresh Raina', 'Ravi Jadeja','Dwayne Bravo','Sam Curran','Mitchell Santner','Shardul Thakur','Deepak Chahar','Lungi Ngidi','Imran Tahir','Ruturaj Gaikwad'];
+  let socket = new WebSocket("ws://192.168.1.60:9090/lib/cricketServerEndpoint");
+  socket.onmessage=function processMessage(bowlingscore){
+    document.getElementById("ball1"),innerHTML=bowlingscore;
+  }
 </script>
 </head>
 <body>
     <center><h1>SCORE BOARD</h1></center>
     <div>
+    <div class="card rundetailsbox">
     <h4>RUNS:{{this.run}}/{{this.out}}</h4>
     <h4>4's Count:{{this.fourcount}}</h4>
     <h4>6's Count:{{this.sixcount}}</h4> 
+    </div>
+  <div class="card player">
+  <h6 style="margin-top:10px">PLAYER1:<p>{{this.player1}}</p></h6>
+  <h6 style="margin-top:20px;">PLAYER2:<p>{{this.player2}}</p></h6>
+  </div>
   <center><h4 id="winstatus">CSK Needs {{this.runs}} runs in {{this.totalballs}} balls to win.</h4></center>
-  <h6 style="margin-left:1000px">CURRENT PLAYER:</h6>
-  <select name="player" id="player" class="form-select" onchange={{action "getscore"}}>
-    <option value="" disabled selected hidden>CHOOSE THE STRIKER</option>   
-    <option value="MS DHONI">MS DHONI</option>
-    <option value="Suresh Raina">Suresh Raina</option>
-    <option value="Ravi Jadeja">Ravi Jadeja</option>
-    <option value="Dwayne Bravo">Dwayne Bravo</option>
-    <option value="Sam Curran">Sam Curran</option>
-    <option value="Mitchell Santner">Mitchell Santner</option>=
-    <option value="Shardul Thakur">Shardul Thakur</option>
-    <option value="Deepak Chahar">Deepak Chahar</option>
-    <option value="Lungi Ngidi">Lungi Ngidi</option>
-    <option value="Imran Tahir">Imran Tahir</option>
-    <option value="Ruturaj Gaikwad">Ruturaj Gaikwad</option>
-  </select>
-     <select name="score" class="form-select" disabled id="score" onblur={{action "add"}}  style="width:20%">
+     <select name="score" class="custom-select" id="score" style="width:20%;margin-left:20px">
     <option value="" disabled selected hidden>CHOOSE SCORE</option>   
     <option value="1">1</option>
     <option value="2">2</option>
@@ -36,10 +32,11 @@
     <option value="6">6</option>
     <option value="out">out</option>
   </select>
+  <input type="button" class="btn btn-dark" value="bowl" id="bowl"  onclick={{action "add"}}/>
     </div>
  
   <div style="float: left;width:50%">
-    <h6 style="margin-top: 50px" ><center>SCORE TABLE</center></h6>
+    <h6 style="margin-top:100px" ><center>SCORE TABLE</center></h6>
     <table class="table" style="margin-left:50px;margin-top:50px;table-layout:fixed">
   <thead class="thead-dark">
     <tr>
@@ -71,17 +68,17 @@
   <th scope="col">OUT</th>
   </thead>
   <tbody>
-    <tr><td style="height:65px;">MS DHONI</td><td><p id="player1"></p></td><td ><p id="out1"></p></td></tr>
-    <tr><td style="height:65px;">Suresh Raina</td><td><p id="player2"></p></td><td ><p id="out2"></p></td></tr>
-    <tr><td style="height:65px;">Ravi Jadeja</td><td><p id="player3"></p></td><td ><p id="out3"></p></td></tr>
-    <tr><td style="height:65px;">Dwayne Bravo</td><td><p id="player4"></p></td><td ><p id="out4"></p></td></tr>
-    <tr><td style="height:65px;">Sam Curran</td><td><p id="player5"></p></td><td ><p id="out5"></p></td></tr>
-    <tr><td style="height:65px;">Mitchell Santner</td><td><p id="player6"></p></td><td ><p id="out6"></p></td></tr>
-    <tr><td style="height:65px;">Shardul Thakur</td><td><p id="player7"></p></td><td ><p id="out7"></p></td></tr>
-    <tr><td style="height:65px;">Deepak Chahar</td><td><p id="player8"></p></td><td ><p id="out8"></p></td></tr>
-    <tr><td style="height:65px;">Lungi Ngidi</td><td><p id="player9"></p></td><td ><p id="out9"></p></td></tr>
-    <tr><td style="height:65px;">Imran Tahir</td><td><p id="player10"></p></td><td ><p id="out10"></p></td></tr>
-    <tr><td style="height:65px;">Ruturaj Gaikwad</td><td><p id="player11"></p></td><td ><p id="out11"></p></td></tr>
+    <tr><td style="height:65px;">MS DHONI</td><td><p id="MS DHONI"></p></td><td ><p id="MS DHONIout"></p></td></tr>
+    <tr><td style="height:65px;">Suresh Raina</td><td><p id="Suresh Raina"></p></td><td ><p id="Suresh Rainaout"></p></td></tr>
+    <tr><td style="height:65px;">Ravi Jadeja</td><td><p id="Ravi Jadeja"></p></td><td ><p id="Ravi Jadejaout"></p></td></tr>
+    <tr><td style="height:65px;">Dwayne Bravo</td><td><p id="Dwayne Bravo"></p></td><td ><p id="Dwayne Bravoout"></p></td></tr>
+    <tr><td style="height:65px;">Sam Curran</td><td><p id="Sam Curran"></p></td><td ><p id="Sam Curranout"></p></td></tr>
+    <tr><td style="height:65px;">Mitchell Santner</td><td><p id="Mitchell Santner"></p></td><td ><p id="Mitchell Santnerout"></p></td></tr>
+    <tr><td style="height:65px;">Shardul Thakur</td><td><p id="Shardul Thakur"></p></td><td ><p id="Shardul Thakurout"></p></td></tr>
+    <tr><td style="height:65px;">Deepak Chahar</td><td><p id="Deepak Chahar"></p></td><td ><p id="Deepak Chaharout"></p></td></tr>
+    <tr><td style="height:65px;">Lungi Ngidi</td><td><p id="Lungi Ngidi"></p></td><td ><p id="Lungi Ngidiout"></p></td></tr>
+    <tr><td style="height:65px;">Imran Tahir</td><td><p id="Imran Tahir"></p></td><td ><p id="Imran Tahirout"></p></td></tr>
+    <tr><td style="height:65px;">Ruturaj Gaikwad</td><td><p id="Ruturaj Gaikwad"></p></td><td ><p id="Ruturaj Gaikwadout"></p></td></tr>
   </tbody>
 </table>
 </div2>

@@ -4,8 +4,8 @@ module.exports = function (environment) {
   let ENV = {
     modulePrefix: 'demo',
     environment,
-    rootURL: '/',
-    locationType: 'auto',
+    rootURL: '/cricketpage',
+    locationType: 'hash',
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build

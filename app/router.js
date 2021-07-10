@@ -9,6 +9,5 @@ export default class Router extends EmberRouter {
 Router.map(function () {
   this.route('homepage');
   this.route('gamepage');
-  this.route('success');
-  this.route('failure');
+  
 });
